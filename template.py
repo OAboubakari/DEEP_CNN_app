@@ -17,6 +17,9 @@ list_of_files = [
     f"src/{project_name}/pipeline/__init__.py",
     f"src/{project_name}/entity/__init__.py",
     f"src/{project_name}/constants/__init__.py",
+    "tests/__init__.py",
+    "tests/unit/__init__.py",
+    "tests/integration/__init__.py",
     "configs/confi.yaml",
     "dvc.yaml",
     "params.yaml",
@@ -33,13 +36,17 @@ list_of_files = [
 for filepath in list_of_files:
     filepath = Path(filepath)
     filedir , filename = os.path.split(filepath)
-    if filedir!="":
+    if filedir !="":
         os.makedirs(filedir, exist_ok=True)
         logging.info("Creating directory {filedir} for the file {filename}")
-    if (not os.path.exists(filepath)) or (os.path.getsize()== 0):
+
+
+    if (not os.path.exists(filepath)) or (os.path.getsize(filepath) == 0):
         with open(filepath, "w") as f:
            pass # create an empty file
            logging.info(f"Creating empty file : {filepath}")
+
+
     else:
 
         logging.info(f"{filename} already exists")
